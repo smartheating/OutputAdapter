@@ -1,0 +1,57 @@
+spring:
+  application:
+    name: outputadapter
+  profiles:
+    active: "dev"
+
+server:
+  port: ${PORT:9015}
+
+---
+spring:
+  profiles: dev
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: rabbitUser
+    password: rabbitPass
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:9000/eureka/
+    enabled: true
+  instance:
+    preferIpAddress: true
+    
+---
+spring:
+  profiles: docker
+  rabbitmq:
+    host: rabbitmq
+    port: 5672
+    username: rabbitUser
+    password: rabbitPass
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://serviceregistration:9000/eureka/
+    enabled: true
+  instance:
+    preferIpAddress: true
+    
+---
+spring:
+  profiles: aws
+  rabbitmq:
+    host: ${RABBITMQ_PRIVATE_IP}
+    port: 5672
+    username: rabbitUser
+    password: rabbitPass
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://${SERVICE_REGISTRATION_PRIVATE_IP}:9000/eureka/
+    enabled: true
+  instance:
+    preferIpAddress: true
+    homePageUrl: http://${PRIVATE_IP}:9015/

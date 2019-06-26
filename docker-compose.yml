@@ -1,0 +1,17 @@
+version: '3.7'
+
+services: 
+  outputadapter-service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: outputadapter
+    ports:
+      - 9015:9015
+    container_name: outputadapter
+    hostname: outputadapter
+
+networks:
+  default:
+    external:
+      name: smartheating
