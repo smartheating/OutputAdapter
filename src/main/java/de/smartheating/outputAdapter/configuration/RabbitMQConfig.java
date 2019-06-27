@@ -19,7 +19,7 @@ import de.smartheating.outputAdapter.rabbitmq.MessageConsumer;
 public class RabbitMQConfig {
 
 	public final static String RABBITMQ_QUEUE = "outputadapter";
-	public final static String RABBITMQ_EXCHANGE = "directexchange";
+	public final static String RABBITMQ_EXCHANGE = "outputadapter-exchange";
 	public final static String RABBITMQ_ROUTINGKEY = "to.outputadapter";
 	
     @Bean
